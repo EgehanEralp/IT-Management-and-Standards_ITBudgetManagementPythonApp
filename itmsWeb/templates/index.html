@@ -1,0 +1,121 @@
+<html>
+
+<head>
+
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/mainpage.css') }}">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<title>IT Bütçe Yönetimi Uygulaması</title>
+
+</head>
+<body>
+
+<div class="wrapper fadeInDown">
+<div id="formContent">
+
+    <form action="/hesapla" method="post">
+    <!--
+      <label for="fname">First name:</label><br>
+      <input type="text" id="fname" name="fname"><br>
+      <label for="lname">Last name:</label><br>
+      <input type="text" id="lname" name="lname"><br>
+    -->
+      <br>
+      <label for="butce">Bütçe türü:</label>
+      <select name="butceturu" id="butceturu">
+        <optgroup label="Gelir">
+          <option value="Proje Bazlı Gelir">Proje Bazlı Gelir</option>
+          <option value="Rutin Gelir">Rutin Gelir</option>
+        </optgroup>
+        <optgroup label="Gider">
+          <option value="Sabit Gider">Sabit Gider</option>
+          <option value="Değişken Gider">Değişken Gider</option>
+        </optgroup>
+      </select>
+      <br><br>
+      
+      Açıklama:
+      <input type="text" name="aciklama"><br><br>
+      
+      Miktar(TL):
+      <input type="number" name="miktar">
+      
+      &ensp;
+      
+      Aylık/Yıllık:
+      <select name="ayyil" id="ayyil">
+          <option value="Yıllık">Yıllık</option>
+          <option value="Aylık">Aylık</option>
+      </select>
+      <br>
+      <br>
+      <button type="submit" >GONDER</button>
+      
+    </form>
+
+{% if submitted %}
+<p style="color:blue;">İşleminiz başarıyla gerçekleştirildi!</p>  
+{% endif %}
+
+{% if analizOlumsuz %}
+<p style="color:red;">Analiz işlemi şuanda gerçekleştirilemiyor!</p>  
+{% endif %}
+</div>
+
+<br><br>
+
+
+<div id="formContent">
+<br>
+<form action="/analiz" method="post">
+    <button type="submit" >Bütçe Raporu</button>
+</form>
+
+{% if karMiktari %}
+<p style="color:green;">Aylık Kar: {{karMiktari}} TL</p>
+{% endif %}
+
+{% if zararMiktari %}
+<p style="color:red;">Aylık Zarar: {{zararMiktari}} TL</p>
+{% endif %}
+
+<form action="/gelirAnaliz" method="post">
+    <button type="submit" >Gelir Analizi</button>
+</form>
+
+<form action="/giderAnaliz" method="post">
+    <button type="submit" >Gider Analizi</button>
+</form>
+</div>
+
+<br>
+
+<div id="formContent">
+<form action="/goDisplayGelir" method="post">
+    <br>
+    <button type="submit" style="color:blue;">Gelir Verilerini Göster ve Düzenle</button>
+</form>
+<form action="/goDisplayGider" method="post">
+    <button type="submit" style="color:blue;">Gider Verilerini Göster ve Düzenle</button>
+</form>
+</div>
+
+<br>
+
+<div id="formContent">
+<form action="/downloadGelir" method="post">
+    <br>
+    <button type="submit" style="color:green;">Gelir Verilerini İndir</button>
+</form>
+<form action="/downloadGider" method="post">
+    <button type="submit" style="color:green;">Gider Verilerini İndir</button>
+</form>
+</div>
+
+
+</div>
+
+</body>
+</html>
