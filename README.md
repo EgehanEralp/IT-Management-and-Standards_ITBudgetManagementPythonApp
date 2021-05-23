@@ -1,7 +1,7 @@
 # IT-Management-and-Standards_ITBudgetManagementApp
 IT Budget Management Web Application with Python - Flask Web Framework
 
-##Web Uygulamamızın içerdiği fonksiyonaliteler:
+## Web Uygulamamızın içerdiği fonksiyonaliteler:
 - Bütçe Tanımla ve Ekle (Açıklama + Aylık/Yıllık Miktar)
 - Proje Bazlı Gelir ekle
 - Rutin Gelir ekle
